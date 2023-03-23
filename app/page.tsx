@@ -4,7 +4,7 @@ import axios from "axios";
 import CreatePost from "./components/AddPost";
 import { useQuery } from "@tanstack/react-query";
 import Post from "./components/Post";
-
+import { PostType } from "./types/Posts";
 // Fetch all posts
 const allPosts = async () => {
   const response = await axios.get("/api/posts/getPosts");
@@ -12,7 +12,7 @@ const allPosts = async () => {
 };
 
 export default function Home() {
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery<PostType[]>({
     queryFn: allPosts,
     queryKey: ["posts"],
   });
@@ -22,13 +22,14 @@ export default function Home() {
   return (
     <main>
       <CreatePost />
-      {data?.map((post: any) => (
+      {data?.map((post) => (
         <Post
           key={post.id}
           name={post.user.name}
           postTitle={post.title}
           avatar={post.user.image}
           id={post.id}
+          comments={post.comments}
         />
       ))}
     </main>

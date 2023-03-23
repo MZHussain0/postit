@@ -8,9 +8,10 @@ type Props = {
   postTitle: string;
   avatar: string;
   id: string;
+  comments: [];
 };
 
-const Post = ({ name, postTitle, avatar, id }: Props) => {
+const Post = ({ name, postTitle, avatar, id, comments }: Props) => {
   return (
     <div className="my-8 p-8 rounded-lg bg-white">
       <div className="flex items-center gap-2">
@@ -28,7 +29,9 @@ const Post = ({ name, postTitle, avatar, id }: Props) => {
       </div>
       <div className="flex items-center cursor-pointer gap-4">
         <Link href={`/post/${id}`}>
-          <p className="text-sm font-bold text-gray-700">Comments</p>
+          <p className="text-sm font-bold text-gray-700">
+            {comments.length} &nbsp; comments
+          </p>
         </Link>
       </div>
     </div>

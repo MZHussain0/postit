@@ -7,9 +7,10 @@ export default async function handler(
 ) {
   if (req.method === "GET") {
     // fetch all posts
+
     try {
       const result = await client.post.findMany({
-        include: { user: true },
+        include: { user: true, comments: true },
         orderBy: { createdAt: "desc" },
       });
       res.status(200).json(result);
