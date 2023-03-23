@@ -1,7 +1,11 @@
+"use client";
+
+import CreatePost from "./components/AddPost";
+
 export default function Home() {
   return (
     <main>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <CreatePost />
     </main>
   );
 }
