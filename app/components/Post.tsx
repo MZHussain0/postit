@@ -30,7 +30,7 @@ const Post = ({ name, postTitle, avatar, id, comments }: Props) => {
       <div className="flex items-center cursor-pointer gap-4">
         <Link href={`/post/${id}`}>
           <p className="text-sm font-bold text-gray-700">
-            {comments.length} &nbsp; comments
+            {comments?.length} &nbsp; comments
           </p>
         </Link>
       </div>
