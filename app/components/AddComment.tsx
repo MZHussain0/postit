@@ -14,7 +14,7 @@ const AddComment = ({ id }: any) => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(
-    async (data: comment) => axios.post("api/posts/addComment", { data }),
+    async (data: comment) => axios.post("/api/posts/addComment", { data }),
     {
       onError: (error) => {
         toast.error("comment was not added", { id: toastCommentId });
