@@ -8,7 +8,9 @@ type Props = {};
 
 const CreatePost = (props: Props) => {
   const [title, setTitle] = useState("");
+  const queryClient = useQueryClient();
   let toastPostID: string;
+
   setTimeout(() => {
     toast.dismiss(toastPostID);
   }, 8000);
@@ -23,6 +25,7 @@ const CreatePost = (props: Props) => {
       },
       onSuccess: () => {
         toast.success("Post has been made 🔥", { id: toastPostID });
+        queryClient.invalidateQueries(["posts"]);
         setTitle("");
       },
     }
@@ -31,7 +34,6 @@ const CreatePost = (props: Props) => {
   const submitPost = async (e: React.FormEvent) => {
     e.preventDefault();
     toastPostID = toast.loading("creating your post...", { id: toastPostID });
-
     mutate(title);
     setTitle("");
   };
